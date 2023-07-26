@@ -12,6 +12,26 @@ public class BST<K extends Comparable<K>, V> implements Iterable<BST<K, V>.BSTEn
         size = 0;
     }
 
+    public boolean contains(K key) {
+        return contains(root, key);
+    }
+
+    private boolean contains(Node node, K key) {
+        if (node == null) {
+            return false;
+        }
+        int cmp = key.compareTo(node.key);
+        if (cmp < 0) {
+            return contains(node.left, key);
+        } else if (cmp > 0) {
+            return contains(node.right, key);
+        } else {
+            return true;
+        }
+    }
+
+
+
     public void put(K key, V value) {
         root = put(root, key, value);
     }
